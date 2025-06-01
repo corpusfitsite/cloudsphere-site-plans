@@ -1,5 +1,5 @@
 
-import { Check, X, Zap, Globe, Settings, RefreshCw, Bot, ShoppingCart, CreditCard, BarChart3, Star, Rocket } from "lucide-react";
+import { Check, X, Globe, Settings, Bot, Star, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -103,6 +103,10 @@ const Index = () => {
     { icon: Bot, title: "IA Integrada", description: "Chatbots inteligentes para melhor atendimento" }
   ];
 
+  const scrollToPlans = () => {
+    document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Header */}
@@ -116,29 +120,36 @@ const Index = () => {
               CloudSphere
             </span>
           </div>
-          <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+          <Button 
+            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+            onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+          >
             Fale Conosco
           </Button>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 md:py-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
           <div className="mb-6">
             <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 mb-4">
               ✨ Criação de Sites Profissionais
             </Badge>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
             Transforme sua presença digital com a CloudSphere
           </h1>
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
             Criamos sites profissionais, rápidos e otimizados para converter visitantes em clientes. 
             Escolha o plano ideal para o seu negócio.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-8">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-8"
+              onClick={scrollToPlans}
+            >
               Ver Planos
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 border-blue-200 hover:bg-blue-50">
@@ -154,7 +165,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
             Por que escolher a CloudSphere?
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="text-center group">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -169,7 +180,7 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 px-4">
+      <section id="plans" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-gray-800">
@@ -180,11 +191,11 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
             {plans.map((plan, index) => (
               <Card key={index} className={`relative transition-all duration-300 hover:scale-105 hover:shadow-xl ${
                 plan.popular ? 'ring-2 ring-blue-500 shadow-2xl scale-105' : 'hover:shadow-lg'
-              }`}>
+              } h-full flex flex-col`}>
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                     <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1">
@@ -194,14 +205,14 @@ const Index = () => {
                   </div>
                 )}
                 
-                <CardHeader className="text-center pb-4">
+                <CardHeader className="text-center pb-4 flex-shrink-0">
                   <div className="text-3xl mb-2">{plan.icon}</div>
-                  <CardTitle className="text-xl font-bold text-gray-800">
+                  <CardTitle className="text-lg md:text-xl font-bold text-gray-800">
                     {plan.name} {plan.badge}
                   </CardTitle>
                   <p className="text-sm text-gray-600 mb-4">{plan.description}</p>
                   <div className="space-y-1">
-                    <div className="text-3xl font-bold text-blue-600">
+                    <div className="text-2xl md:text-3xl font-bold text-blue-600">
                       R${plan.price.toLocaleString()}
                     </div>
                     <div className="text-sm text-gray-500">
@@ -210,16 +221,16 @@ const Index = () => {
                   </div>
                 </CardHeader>
 
-                <CardContent className="space-y-3">
-                  <div className="space-y-2 text-sm">
+                <CardContent className="space-y-3 flex-grow flex flex-col">
+                  <div className="space-y-2 text-sm flex-grow">
                     <div className="flex items-center justify-between">
                       <span className="text-gray-600">📄 Páginas:</span>
-                      <span className="font-medium">{plan.type}</span>
+                      <span className="font-medium text-xs md:text-sm">{plan.type}</span>
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <span className="text-gray-600">🚀 Velocidade:</span>
-                      <span className="font-medium">{plan.speed}</span>
+                      <span className="font-medium text-xs md:text-sm">{plan.speed}</span>
                     </div>
                     
                     <div className="flex items-center justify-between">
@@ -289,11 +300,12 @@ const Index = () => {
                   </div>
                   
                   <Button 
-                    className={`w-full mt-6 ${
+                    className={`w-full mt-auto ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700' 
                         : 'bg-gray-800 hover:bg-gray-900'
                     }`}
+                    onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
                   >
                     Escolher Plano
                   </Button>
@@ -307,17 +319,26 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-indigo-700">
         <div className="container mx-auto text-center text-white">
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Pronto para transformar seu negócio?
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Entre em contato conosco e descubra como podemos criar o site perfeito para sua empresa.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="text-lg px-8"
+              onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+            >
               Solicitar Orçamento
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 border-white text-white hover:bg-white hover:text-blue-600">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg px-8 border-white text-white hover:bg-white hover:text-blue-600"
+            >
               Ver Portfólio
             </Button>
           </div>
